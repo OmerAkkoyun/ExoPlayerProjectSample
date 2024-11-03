@@ -4,4 +4,6 @@
 
          <item name="colorPrimary">@color/red</item>
     </style>
+
+    <style name="Theme.ExoPlayerSample" parent="Base.Theme.ExoPlayerSample" />
 </resources>

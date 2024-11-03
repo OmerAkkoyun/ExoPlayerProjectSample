@@ -8,7 +8,6 @@ import android.os.Build
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowInsetsController
-import android.widget.FrameLayout
 import android.widget.ImageView
 import coil.load
 import com.omerakkoyun.exoplayersample.R

@@ -11,9 +11,17 @@
         android:label="fragment_movie_list"
         tools:layout="@layout/fragment_movie_list" >
         <action
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"
             android:id="@+id/action_movieListFragment_to_movieDetailsFragment"
             app:destination="@id/movieDetailsFragment" />
         <action
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"
             android:id="@+id/action_movieListFragment_to_moviePlayerFragment"
             app:destination="@id/moviePlayerFragment" />
     </fragment>
@@ -22,6 +30,10 @@
         android:name="com.omerakkoyun.exoplayersample.presentation.movie_details.MovieDetailsFragment"
         android:label="MovieDetailsFragment" >
         <action
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"
             android:id="@+id/action_movieDetailsFragment_to_moviePlayerFragment"
             app:destination="@id/moviePlayerFragment" />
     </fragment>

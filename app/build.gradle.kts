@@ -65,6 +65,11 @@ dependencies {
     // security
     implementation (libs.androidx.security.crypto)
 
+    // paging
+    implementation(libs.androidx.paging.runtime.ktx)
+
+    //coil
+    implementation(libs.coil)
 
 
 }

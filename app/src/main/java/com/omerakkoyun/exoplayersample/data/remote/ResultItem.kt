@@ -1,10 +1,13 @@
 package com.omerakkoyun.exoplayersample.data.remote
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 /**
  * Created by Omer AKKOYUN on 3.11.2024.
  */
+@Parcelize
 data class ResultItem(
     @SerializedName("adult")
     val adult: Boolean?,
@@ -47,4 +50,4 @@ data class ResultItem(
 
     @SerializedName("vote_count")
     val voteCount: Int?
-)
+): Parcelable

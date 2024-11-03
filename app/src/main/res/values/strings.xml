@@ -6,4 +6,6 @@
     <string name="revenue">Highest Revenue</string>
     <string name="topbar_logo">TopBar Logo</string>
     <string name="highest_rated">Highest Rated</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

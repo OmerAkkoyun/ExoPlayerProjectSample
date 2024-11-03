@@ -1,10 +1,14 @@
 package com.omerakkoyun.exoplayersample.presentation.movie_list
 
+import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
+import com.omerakkoyun.exoplayersample.R
 import com.omerakkoyun.exoplayersample.base.BaseFragment
+import com.omerakkoyun.exoplayersample.common.Constants.MOVIE_ITEM
 import com.omerakkoyun.exoplayersample.data.remote.ResultItem
 import com.omerakkoyun.exoplayersample.databinding.FragmentMovieListBinding
 import com.omerakkoyun.exoplayersample.enums.MovieRequestType
@@ -59,6 +63,8 @@ class MovieListFragment : BaseFragment<FragmentMovieListBinding, MovieListViewMo
 
     // go details screen with movie item
     private fun sectionClickListener(data: ResultItem){
-        Log.e("TAG", "sectionClickListener: $data")
+        val bundle = Bundle()
+        bundle.putParcelable(MOVIE_ITEM,data)
+        findNavController().navigate(R.id.action_movieListFragment_to_movieDetailsFragment,bundle)
     }
 }

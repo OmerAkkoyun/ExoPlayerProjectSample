@@ -17,5 +17,13 @@
     <fragment
         android:id="@+id/movieDetailsFragment"
         android:name="com.omerakkoyun.exoplayersample.presentation.movie_details.MovieDetailsFragment"
-        android:label="MovieDetailsFragment" />
+        android:label="MovieDetailsFragment" >
+        <action
+            android:id="@+id/action_movieDetailsFragment_to_moviePlayerFragment"
+            app:destination="@id/moviePlayerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/moviePlayerFragment"
+        android:name="com.omerakkoyun.exoplayersample.presentation.movie_player.MoviePlayerFragment"
+        android:label="MoviePlayerFragment" />
 </navigation>

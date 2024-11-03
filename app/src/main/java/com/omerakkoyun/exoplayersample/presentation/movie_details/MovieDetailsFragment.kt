@@ -1,8 +1,10 @@
 package com.omerakkoyun.exoplayersample.presentation.movie_details
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.omerakkoyun.exoplayersample.R
 import com.omerakkoyun.exoplayersample.base.BaseFragment
 import com.omerakkoyun.exoplayersample.common.Constants.IMAGE_PATH
 import com.omerakkoyun.exoplayersample.common.Constants.MOVIE_ITEM
@@ -45,7 +47,9 @@ class MovieDetailsFragment : BaseFragment<FragmentMovieDetailsBinding, MovieDeta
 
         binding.imgPlay.setOnClickListener {
             // go video player screen
-
+            val bundle = Bundle()
+            bundle.putParcelable(MOVIE_ITEM, arguments?.getParcelable(MOVIE_ITEM))
+            findNavController().navigate(R.id.action_movieDetailsFragment_to_moviePlayerFragment,bundle)
 
         }
     }

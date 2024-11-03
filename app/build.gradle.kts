@@ -62,6 +62,10 @@ dependencies {
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
 
+    // security
+    implementation (libs.androidx.security.crypto)
+
+
 
 }
 

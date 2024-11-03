@@ -1,12 +1,14 @@
 package com.omerakkoyun.exoplayersample.utils
 
 import android.app.Activity
+import android.content.Context
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.os.Build
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowInsetsController
+import android.widget.FrameLayout
 import android.widget.ImageView
 import coil.load
 import com.omerakkoyun.exoplayersample.R
@@ -64,4 +66,8 @@ fun Activity.hideSystemBars() {
                         or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
                 )
     }
+}
+
+fun Context.isTabletDevice(): Boolean{
+    return resources.configuration.smallestScreenWidthDp >= 600
 }

@@ -8,11 +8,15 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.omerakkoyun.exoplayersample.R
 import com.omerakkoyun.exoplayersample.base.BaseFragment
+import com.omerakkoyun.exoplayersample.common.Constants.IMAGE_PATH
 import com.omerakkoyun.exoplayersample.common.Constants.MOVIE_ITEM
 import com.omerakkoyun.exoplayersample.data.remote.ResultItem
 import com.omerakkoyun.exoplayersample.databinding.FragmentMovieListBinding
 import com.omerakkoyun.exoplayersample.enums.MovieRequestType
 import com.omerakkoyun.exoplayersample.presentation.movie_list.adapter.MovieListRecyclerViewAdapter
+import com.omerakkoyun.exoplayersample.utils.isTabletDevice
+import com.omerakkoyun.exoplayersample.utils.loadImageFromID
+import com.omerakkoyun.exoplayersample.utils.makeItVisible
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -63,8 +67,32 @@ class MovieListFragment : BaseFragment<FragmentMovieListBinding, MovieListViewMo
 
     // go details screen with movie item
     private fun sectionClickListener(data: ResultItem){
-        val bundle = Bundle()
-        bundle.putParcelable(MOVIE_ITEM,data)
-        findNavController().navigate(R.id.action_movieListFragment_to_movieDetailsFragment,bundle)
+        if (requireActivity().isTabletDevice()){
+            setTabletViewData(data)
+        }else{
+            val bundle = Bundle()
+            bundle.putParcelable(MOVIE_ITEM,data)
+            findNavController().navigate(R.id.action_movieListFragment_to_movieDetailsFragment,bundle)
+        }
+    }
+
+    private fun setTabletViewData( data: ResultItem){
+        with(binding) {
+            tvMovieTitle?.text = data.title
+            tvDescription?.text = data.overview
+            tvMovieScore?.text = data.voteAverage.toString()
+            tvMovieReleaseDate?.text = data.releaseDate.toString()
+            imgMovie?.loadImageFromID(IMAGE_PATH + data.backdropPath)
+
+            imgPlay?.makeItVisible()
+            imgStar?.makeItVisible()
+            imgCalendar?.makeItVisible()
+
+            imgPlay?.setOnClickListener {
+                val bundle = Bundle()
+                bundle.putParcelable(MOVIE_ITEM,data)
+                findNavController().navigate(R.id.action_movieListFragment_to_moviePlayerFragment,bundle)
+            }
+        }
     }
 }

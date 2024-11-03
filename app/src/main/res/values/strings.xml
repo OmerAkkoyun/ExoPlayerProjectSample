@@ -2,4 +2,8 @@
     <string name="app_name">ExoPlayerSample</string>
     <string name="connection_error">No Internet connection</string>
     <string name="unknown_error">"Unknown error occurred"</string>
+    <string name="popular">Most Popular</string>
+    <string name="revenue">Highest Revenue</string>
+    <string name="topbar_logo">TopBar Logo</string>
+    <string name="highest_rated">Highest Rated</string>
 </resources>

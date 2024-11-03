@@ -49,6 +49,9 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    // navigation
+    implementation(libs.androidx.navigation.fragment)
+
     // retrofit
     implementation(libs.retrofit)
     implementation (libs.converter.gson)

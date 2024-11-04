@@ -10,7 +10,7 @@ import com.omerakkoyun.exoplayersample.databinding.ItemMovieViewBinding
 /**
  * Created by Omer AKKOYUN on 3.11.2024.
  */
-class MovieListRecyclerViewAdapter(private val itemClick: (ResultItem) -> Unit) : PagingDataAdapter<ResultItem, MovieViewHolder>(DIFF_UTIL) {
+class MovieListPagingAdapter(private val itemClick: (ResultItem,position: Int) -> Unit) : PagingDataAdapter<ResultItem, MovieViewHolder>(DIFF_UTIL) {
 
     companion object {
         private val DIFF_UTIL = object : DiffUtil.ItemCallback<ResultItem>() {

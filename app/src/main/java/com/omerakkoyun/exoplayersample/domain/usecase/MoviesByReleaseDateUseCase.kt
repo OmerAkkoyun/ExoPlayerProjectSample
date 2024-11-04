@@ -9,7 +9,6 @@ import javax.inject.Inject
  * Created by Omer AKKOYUN on 3.11.2024.
  */
 class MoviesByReleaseDateUseCase @Inject constructor(private val movieRepository: MovieRepository) {
-
     suspend fun getByReleaseDateMovies(language: String, page: Int): NetworkResult<MovieResponse> {
         return movieRepository.getByReleaseDateMovies(language, page)
     }

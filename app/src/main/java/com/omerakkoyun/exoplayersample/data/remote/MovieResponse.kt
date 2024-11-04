@@ -1,6 +1,8 @@
 package com.omerakkoyun.exoplayersample.data.remote
 
 import com.google.gson.annotations.SerializedName
+import com.omerakkoyun.exoplayersample.enums.MovieRequestType
+
 /**
  * Created by Omer AKKOYUN on 3.11.2024.
  */
@@ -15,5 +17,7 @@ data class MovieResponse(
     val totalPages: Int?,
 
     @SerializedName("total_results")
-    val totalResults: Int?
+    val totalResults: Int?,
+
+    val movieType: MovieRequestType? = null
 )

@@ -11,9 +11,9 @@ import com.omerakkoyun.exoplayersample.utils.loadImageFromID
  * Created by Omer AKKOYUN on 3.11.2024.
  */
 class MovieViewHolder(private val binding: ItemMovieViewBinding) : RecyclerView.ViewHolder(binding.root) {
-    fun bind(item: ResultItem, itemClick: (ResultItem) -> Unit){
+    fun bind(item: ResultItem, itemClick: (ResultItem,position: Int) -> Unit){
         binding.imgMovie.setOnClickListener {
-            itemClick(item)
+            itemClick(item,position)
         }
         binding.imgMovie.loadImageFromID(IMAGE_PATH + item.posterPath)
     }

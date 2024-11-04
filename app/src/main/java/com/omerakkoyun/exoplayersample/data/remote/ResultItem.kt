@@ -2,6 +2,7 @@ package com.omerakkoyun.exoplayersample.data.remote
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import com.omerakkoyun.exoplayersample.enums.MovieRequestType
 import kotlinx.parcelize.Parcelize
 
 /**
@@ -49,5 +50,7 @@ data class ResultItem(
     val voteAverage: Double?,
 
     @SerializedName("vote_count")
-    val voteCount: Int?
+    val voteCount: Int?,
+
+    var movieRequestType: MovieRequestType? = null
 ): Parcelable

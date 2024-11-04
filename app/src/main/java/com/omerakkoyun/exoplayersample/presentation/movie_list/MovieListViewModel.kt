@@ -1,6 +1,7 @@
 package com.omerakkoyun.exoplayersample.presentation.movie_list
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
@@ -8,6 +9,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.liveData
+import com.omerakkoyun.exoplayersample.data.local.MovieDao
 import com.omerakkoyun.exoplayersample.data.remote.ResultItem
 import com.omerakkoyun.exoplayersample.domain.usecase.MoviesByReleaseDateUseCase
 import com.omerakkoyun.exoplayersample.domain.usecase.PopularMoviesUseCase
@@ -28,6 +30,9 @@ class MovieListViewModel @Inject constructor(
     private val topRevenuesMoviesUseCase: TopRevenuesMoviesUseCase
 ) : ViewModel() {
 
+    private val _errorMessage = MutableLiveData<String?>()
+    val errorMessage: LiveData<String?> = _errorMessage
+
     fun getMoviesWithPaging(movieRequestType: MovieRequestType): LiveData<PagingData<ResultItem>> {
         return Pager(
             config = PagingConfig(pageSize = 20),
@@ -36,10 +41,10 @@ class MovieListViewModel @Inject constructor(
                     popularMoviesUseCase = popularMoviesUseCase,
                     moviesByReleaseDateUseCase = moviesByReleaseDateUseCase,
                     topRevenuesMoviesUseCase = topRevenuesMoviesUseCase,
-                    movieRequestType = movieRequestType
+                    movieRequestType = movieRequestType,
+                    onError = { error -> _errorMessage.postValue(error) }
                 )
             }
         ).liveData.cachedIn(viewModelScope)
     }
-
 }

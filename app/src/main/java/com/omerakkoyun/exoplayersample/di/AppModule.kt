@@ -1,5 +1,8 @@
 package com.omerakkoyun.exoplayersample.di
 
+import android.content.Context
+import com.omerakkoyun.exoplayersample.data.local.MovieDao
+import com.omerakkoyun.exoplayersample.data.local.MovieDatabase
 import com.omerakkoyun.exoplayersample.data.repository.MovieRepositoryImpl
 import com.omerakkoyun.exoplayersample.data.service.MovieApiService
 import com.omerakkoyun.exoplayersample.domain.repository.MovieRepository
@@ -9,6 +12,7 @@ import com.omerakkoyun.exoplayersample.domain.usecase.TopRevenuesMoviesUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -22,8 +26,8 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideMovieRepository(movieApiService: MovieApiService): MovieRepository {
-        return MovieRepositoryImpl(movieApiService)
+    fun provideMovieRepository(movieApiService: MovieApiService,movieDao: MovieDao): MovieRepository {
+        return MovieRepositoryImpl(movieApiService,movieDao)
     }
 
     @Provides
@@ -43,5 +47,18 @@ object AppModule {
     fun provideNowPlayingMoviesUseCase(movieRepository: MovieRepository): MoviesByReleaseDateUseCase {
         return MoviesByReleaseDateUseCase(movieRepository)
     }
+
+    // room
+    @Provides
+    @Singleton
+    fun provideMovieDatabase(@ApplicationContext context: Context): MovieDatabase {
+        return MovieDatabase.getInstance(context)
+    }
+
+    @Provides
+    fun provideMovieDao(movieDao: MovieDatabase) : MovieDao {
+        return movieDao.getMovieDao()
+    }
+
 
 }

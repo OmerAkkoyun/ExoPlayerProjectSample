@@ -10,7 +10,6 @@ import javax.inject.Inject
  * Created by Omer AKKOYUN on 3.11.2024.
  */
 class TopRevenuesMoviesUseCase @Inject constructor(private val movieRepository: MovieRepository) {
-
     suspend fun getTopRevenuesMovies(language: String, page: Int): NetworkResult<MovieResponse> {
         return movieRepository.getTopRevenuesMovies(language, page)
     }

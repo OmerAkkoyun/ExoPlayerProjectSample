@@ -1,10 +1,8 @@
 package com.omerakkoyun.exoplayersample.data.repository
 
-import android.util.Log
 import com.omerakkoyun.exoplayersample.base.BaseRepository
 import com.omerakkoyun.exoplayersample.base.NetworkResult
 import com.omerakkoyun.exoplayersample.data.local.MovieDao
-import com.omerakkoyun.exoplayersample.data.local.MovieEntity
 import com.omerakkoyun.exoplayersample.data.remote.MovieResponse
 import com.omerakkoyun.exoplayersample.data.service.MovieApiService
 import com.omerakkoyun.exoplayersample.domain.repository.MovieRepository
@@ -38,7 +36,7 @@ class MovieRepositoryImpl @Inject constructor(
         page: Int,
         movieType: MovieRequestType
     ): NetworkResult<MovieResponse> {
-        Log.e("MovieRepositoryImpl","MovieRepositoryImpl -> İSTEK GELDİ")
+
         // Öncelikle API'den verileri al
         val response = safeApiRequest {
             when (movieType) {
@@ -47,11 +45,10 @@ class MovieRepositoryImpl @Inject constructor(
                 MovieRequestType.POPULAR -> movieApiService.getPopularMovies(language, page)
             }
         }
-        Log.e("MovieRepositoryImpl","MovieRepositoryImpl -> İSTEK GELDİ, RESPONSE -> $response")
+
 
         // API'den veri alındıysa, verileri cache'e kaydet
         if (response is NetworkResult.Success) {
-            Log.e("MovieRepositoryImpl","MovieRepositoryImpl -> İSTEK GELDİ -> success")
             response.data?.results?.let { results ->
                 val movieEntities = results.map {
                     it.movieRequestType = movieType
@@ -65,7 +62,6 @@ class MovieRepositoryImpl @Inject constructor(
 
         // Eğer API'den bir hata varsa, cache'den veri al
         if (response is NetworkResult.Error) {
-            Log.e("MovieRepositoryImpl","MovieRepositoryImpl -> İSTEK GELDİ -> error -> cacheden aldı")
             val cachedMovies = movieDao.getMoviesByType(movieType)
             return if (cachedMovies.isNotEmpty()) {
                 NetworkResult.Success(MovieResponse(
@@ -75,13 +71,9 @@ class MovieRepositoryImpl @Inject constructor(
                     totalResults = cachedMovies.first().totalResults
                 ))
             } else {
-                Log.e("MovieRepositoryImpl","MovieRepositoryImpl -> İSTEK GELDİ, 78. satır -> RESPONSE -> $response")
-                response // Hata durumunu döndür
+                response
             }
         }
-
-        // API'den başarılı bir yanıt alınmadıysa, veritabanındaki verileri döndür
-        Log.e("MovieRepositoryImpl","MovieRepositoryImpl -> İSTEK GELDİ, 84.satr RESPONSE -> $response")
         return response
     }
 }

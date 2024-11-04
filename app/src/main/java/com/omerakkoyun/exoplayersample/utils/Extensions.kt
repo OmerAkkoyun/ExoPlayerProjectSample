@@ -15,7 +15,6 @@ import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import coil.load
 import com.omerakkoyun.exoplayersample.R
 import com.omerakkoyun.exoplayersample.data.local.MovieEntity
-import com.omerakkoyun.exoplayersample.data.remote.MovieResponse
 import com.omerakkoyun.exoplayersample.data.remote.ResultItem
 import com.omerakkoyun.exoplayersample.enums.MovieRequestType
 
@@ -104,20 +103,20 @@ fun ResultItem.toMovieEntity(movieType: MovieRequestType, page: Int, totalPages:
 
 fun MovieEntity.toResultItem(): ResultItem {
     return ResultItem(
-        adult = null, // MovieEntity'de adult bilgisi yoksa null veriyoruz
-        backdropPath = this.posterPath, // Örneğin posterPath'ı backdropPath olarak kullanabiliriz
-        genreIds = listOf(), // Genre ID'leri yoksa boş liste döndürülüyor
+        adult = null,
+        backdropPath = this.posterPath,
+        genreIds = listOf(),
         id = this.id,
-        originalLanguage = null, // MovieEntity'de bu alan yoksa null veriyoruz
-        originalTitle = this.title, // MovieEntity'den title kullanıldı
+        originalLanguage = null,
+        originalTitle = this.title,
         overview = this.overview,
-        popularity = null, // MovieEntity'de popularity bilgisi yoksa null veriyoruz
+        popularity = null,
         posterPath = this.posterPath,
         releaseDate = this.releaseDate,
         title = this.title,
-        video = false, // MovieEntity'de video bilgisi yoksa false
+        video = false,
         voteAverage = this.voteAverage,
-        voteCount = 0, // MovieEntity'de voteCount bilgisi yoksa 0
+        voteCount = 0,
         movieRequestType = this.movieType
     )
 }

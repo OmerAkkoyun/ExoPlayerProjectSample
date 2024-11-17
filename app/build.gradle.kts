@@ -2,8 +2,9 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.dagger)
-    kotlin("kapt")
     id("kotlin-parcelize")
+    id("com.google.devtools.ksp")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -63,7 +64,8 @@ dependencies {
 
     // hilt
     implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
+    ksp(libs.hilt.compiler.v2405)
+    //kapt(libs.hilt.compiler)
 
     // security
     implementation (libs.androidx.security.crypto)
@@ -84,13 +86,9 @@ dependencies {
 
     // room
     implementation(libs.androidx.room.runtime)
-    kapt(libs.androidx.room.compiler)
+    ksp(libs.androidx.room.compiler.v250)
     implementation (libs.androidx.room.ktx)
 
     // swipe refresh
     implementation(libs.androidx.swiperefreshlayout)
-}
-
-kapt {
-    correctErrorTypes = true
 }
